@@ -29,8 +29,7 @@ const otpSchema = z.object({
 type OtpFormValues = z.infer<typeof otpSchema>
 
 // API base URL
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://139.59.59.53:8000/api/v1'
-
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.workerlly.in/api/v1/admin"
 // Props interface for OTP Verification
 interface LoginOtpVerificationProps {
   email: string;
@@ -71,7 +70,7 @@ export const LoginOtpVerification: React.FC<LoginOtpVerificationProps> = ({
     setError(null)
 
     try {
-      const response = await fetch(`${API_BASE_URL}/admin/resend-otp`, {
+      const response = await fetch(`${API_BASE_URL}/resend-otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,7 +117,7 @@ export const LoginOtpVerification: React.FC<LoginOtpVerificationProps> = ({
 
     try {
       // Send OTP verification request
-      const response = await fetch(`${API_BASE_URL}/admin/verify-otp`, {
+      const response = await fetch(`${API_BASE_URL}/verify-otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

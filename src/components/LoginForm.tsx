@@ -21,7 +21,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.workerlly.in/api/v1"
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.workerlly.in/api/v1/admin"
 
 interface LoginFormProps {
   onLoginSuccess: (email: string) => void;
@@ -49,7 +49,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
     setIsLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE_URL}/admin/login`, {
+      const response = await fetch(`${API_BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

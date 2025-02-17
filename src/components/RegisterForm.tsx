@@ -31,7 +31,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://139.59.59.53:8000/api/v1'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.workerlly.in/api/v1/admin"
 
 export function RegisterForm() {
   const [error, setError] = useState<string | null>(null)
@@ -50,7 +50,7 @@ export function RegisterForm() {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/admin/register`, {
+      const response = await fetch(`${API_BASE_URL}/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

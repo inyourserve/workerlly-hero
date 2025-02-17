@@ -1,6 +1,6 @@
 import Cookies from "js-cookie"
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.workerlly.in/api/v1"
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.workerlly.in/api/v1/admin"
 
 // Types
 export interface Admin {

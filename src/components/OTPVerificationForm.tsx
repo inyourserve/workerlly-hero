@@ -24,7 +24,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://139.59.59.53:8000/api/v1"
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.workerlly.in/api/v1/admin"
 
 interface OTPVerificationFormProps {
   email: string
@@ -55,7 +55,7 @@ export function OTPVerificationForm({ email, mobile, onVerificationSuccess }: OT
         otp: data.otp,
       })
 
-      const response = await fetch(`${API_BASE_URL}/admin/verify-login`, {
+      const response = await fetch(`${API_BASE_URL}/verify-login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
