@@ -92,7 +92,7 @@ export default function JobDetailsPage() {
           </Button>
           <div>
             <h1 className="text-3xl font-bold">{jobDetails.title}</h1>
-            <p className="text-muted-foreground mt-1">Job ID: {jobDetails.id}</p>
+            <p className="text-muted-foreground mt-1">Task ID: {jobDetails.task_id}</p>
           </div>
         </div>
         <Badge variant="outline" className={STATUS_COLORS[jobDetails.status]}>
@@ -123,7 +123,7 @@ export default function JobDetailsPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Estimated Time</span>
-                <span>{jobDetails.estimated_time} hour(s)</span>
+                <span>{jobDetails.estimated_time} minute(s)</span>
               </div>
             </div>
           </CardContent>

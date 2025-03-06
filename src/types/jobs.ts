@@ -24,6 +24,7 @@ export interface JobQueryParams {
 // Base job interface for list view
 export interface JobBase {
   id: string;
+  task_id: string;
   title: string;
   description: string;
   category: string;

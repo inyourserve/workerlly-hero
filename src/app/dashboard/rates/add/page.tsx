@@ -27,17 +27,8 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
-import { createOrUpdateRate, fetchRates } from '@/api/rateApi'
-import { City, Category } from '@/types/rate'
-
-interface CategoryRate {
-  category_id: string;
-  category_name: string;
-  rate_per_hour: number;
-  min_hourly_rate: number;
-  max_hourly_rate: number;
-  has_existing_rate: boolean;
-}
+import { createOrUpdateRate, fetchRates } from '@/api/addRateApi'
+import { City, Category, CategoryRate } from '@/types/add_rate'
 
 export default function AddRatesPage() {
   const router = useRouter()
@@ -53,7 +44,6 @@ export default function AddRatesPage() {
     loadInitialData()
   }, [])
 
-  // Initialize category rates when categories change
   useEffect(() => {
     if (categories.length > 0) {
       const initialRates = categories.map(category => ({
@@ -68,7 +58,6 @@ export default function AddRatesPage() {
     }
   }, [categories])
 
-  // Fetch existing rates when city is selected
   useEffect(() => {
     if (selectedCity) {
       fetchExistingRates()
@@ -77,10 +66,13 @@ export default function AddRatesPage() {
 
   const loadInitialData = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/admin/rates?page=1&per_page=1')
-      const data = await response.json()
-      setCities(data.cities || [])
-      setCategories(data.categories || [])
+      const response = await fetchRates({
+        city_id: '',
+        page: 1,
+        per_page: 1
+      })
+      setCities(response.cities || [])
+      setCategories(response.categories || [])
     } catch (error) {
       toast({
         variant: "destructive",
@@ -96,15 +88,13 @@ export default function AddRatesPage() {
       const response = await fetchRates({
         city_id: selectedCity,
         page: 1,
-        per_page: 100 // Assuming we won't have more than 100 categories
+        per_page: 100
       })
 
-      // Create a map of existing rates by category_id
       const existingRatesMap = new Map(
         response.rates.map(rate => [rate.category_id, rate])
       )
 
-      // Update category rates with existing values
       setCategoryRates(prevRates => 
         prevRates.map(rate => {
           const existingRate = existingRatesMap.get(rate.category_id)
@@ -185,9 +175,8 @@ export default function AddRatesPage() {
 
     setIsLoading(true)
     try {
-      // Create/update rates for each category
       for (const rate of categoryRates) {
-        if (rate.rate_per_hour > 0) { // Only save rates that have been set
+        if (rate.rate_per_hour > 0) {
           await createOrUpdateRate({
             city_id: selectedCity,
             category_id: rate.category_id,

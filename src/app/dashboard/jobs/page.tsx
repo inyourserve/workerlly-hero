@@ -175,7 +175,7 @@ export default function JobsPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Job ID</TableHead>
+                  <TableHead>Task ID</TableHead>
                   <TableHead>Job Title</TableHead>
                   <TableHead>Category</TableHead>
                   <TableHead>City</TableHead>
@@ -199,8 +199,8 @@ export default function JobsPage() {
                   </TableRow>
                 ) : (
                   jobs.map((job) => (
-                    <TableRow key={job.id}>
-                      <TableCell>{job.id}</TableCell>
+                    <TableRow key={job.task_id}>
+                      <TableCell>{job.task_id}</TableCell>
                       <TableCell className="font-medium">{job.title}</TableCell>
                       <TableCell>{job.category}</TableCell>
                       <TableCell>{job.city}</TableCell>

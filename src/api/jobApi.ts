@@ -3,6 +3,8 @@ import { JobQueryParams, JobResponse, JobDetailsResponse } from '@/types/jobs';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.workerlly.in/api/v1/admin"
 
+// const API_BASE_URL = "http://127.0.0.1:8000/api/v1/admin"
+
 // Helper function for handling API errors
 const handleApiError = (error: any, defaultMessage: string): never => {
   if (error instanceof Response && error.status) {
