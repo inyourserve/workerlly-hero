@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react"
 import { useParams, useRouter } from "next/navigation"
-import { Clock, MapPin, Star, CheckCircle, Calendar, ArrowLeft } from "lucide-react"
+import { Clock, MapPin, Star, CheckCircle, Calendar, ArrowLeft, PlayCircle, SquareCheckBig, MapPinCheck } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -175,9 +175,23 @@ export default function JobDetailsPage() {
               )}
               {jobDetails.reached_at && (
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">Reached:</span>
+                  <MapPinCheck className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-muted-foreground">Reached at:</span>
                   <span>{formatDate(jobDetails.reached_at)}</span>
+                </div>
+              )}
+                 {jobDetails.job_start_otp?.verified_at && (
+                <div className="flex items-center gap-2">
+                  <PlayCircle className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-muted-foreground">Started at:</span>
+                  <span>{formatDate(jobDetails.job_start_otp?.verified_at)}</span>
+                </div>
+              )}
+                  {jobDetails.job_done_otp?.verified_at && (
+                <div className="flex items-center gap-2">
+                  <SquareCheckBig className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-muted-foreground">Completed at:</span>
+                  <span>{formatDate(jobDetails.job_done_otp?.verified_at)}</span>
                 </div>
               )}
             </div>
