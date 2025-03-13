@@ -243,9 +243,7 @@ export default function AdminManagementPage() {
                           <DropdownMenuItem onClick={() => router.push(`/dashboard/admins/edit/${admin.id}`)}>
                             <Pencil className="mr-2 h-4 w-4" /> Edit
                           </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => confirmResetPassword(admin)}>
-                            <Key className="mr-2 h-4 w-4" /> Reset Password
-                          </DropdownMenuItem>
+                          
                           <DropdownMenuItem 
                             onClick={() => confirmDelete(admin)}
                             className="text-destructive focus:text-destructive"
